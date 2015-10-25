@@ -61,10 +61,10 @@ makeCacheMatrix <- function(matrixValues = matrix()) {
 ##
 ## return values: the inverse matrix
 
-cacheSolve <- function(matrixValues, ...) {
+cacheSolve <- function(matrixList, ...) {
     
     ## Return a matrix that is the inverse of 'matrixValues'
-    inverse <- matrixValues$getInverse()
+    inverse <- matrixList$getInverse()
     
     ## checks if the inverse has already been calculated
     if(!is.null(inverse)) {
@@ -72,13 +72,13 @@ cacheSolve <- function(matrixValues, ...) {
         return(inverse)
     }
     
-    data <- matrixValues$get()
+    data <- matrixList$get()
     
     ## if the inverse is not cached yet, calculate the inverse matrix
     inverse <- solve(data, ...)
     
     ## set the inverse matrix cache
-    matrixValues$setInverse(inverse)
+    matrixList$setInverse(inverse)
     
     inverse
 }
